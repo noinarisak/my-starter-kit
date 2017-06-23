@@ -39,20 +39,6 @@ if [ ! -f /etc/apt/sources.list.d/yarn.list ]; then
     _require_apt_get_update="1"
 fi
 
-if ! command -v "watchman" >/dev/null 2>&1; then
-    if ! command -v "add-apt-repository"  >/dev/null 2>&1; then
-        sudo apt-get install software-properties-common
-    fi
-    sudo add-apt-repository ppa:mwhiteley/watchman-daily
-    _require_apt_get_update="1"
-    #git clone https://github.com/facebook/watchman.git
-    #cd watchman
-    #./autogen.sh
-    #./configure
-    #make
-    #sudo make install
-fi
-
 if ! command -v "java" >/dev/null 2>&1; then
     if ! command -v "add-apt-repository"  >/dev/null 2>&1; then
         sudo apt-get install software-properties-common
@@ -88,9 +74,7 @@ sudo apt-get install --no-install-recommends -y \
      python-dev             \
      python-pip             \
      nodejs                 \
-     watchman               \
-     yarn                   \
-     apache2
+     yarn                   
 
 command -v "n" >/dev/null 2>&1 || sudo npm install -g n
 sudo n stable
