@@ -47,11 +47,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
             #enable remote debugging
             machine.vm.network "forwarded_port", guest: 22, host: 2222, auto_correct: true, id:"ssh"
-            machine.vm.network "forwarded_port", guest: 5000, host: 5000, auto_correct: true, id:"flask-diamond"
             machine.vm.network "forwarded_port", guest: 8081, host: 8081, auto_correct: true, id:"chrome powered debugging"
-            # machine.vm.network "forwarded_port", guest: 5037, host: 5037, auto_correct: true, id:"adb"
             machine.vm.network "forwarded_port", guest: 8080, host: 8080, auto_correct: true, id:"gotty"
-            machine.vm.network "forwarded_port", guest: 80, host: 8000, auto_correct: true, id:"apache2"
         
             #use rsync instead of vboxfs to keep files on the guest continually
             #updated, required for live reload to work correctly
@@ -60,7 +57,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                 # rsync__args: ["--verbose", "--archive", "-z", "--copy-links"]
             
             machine.vm.synced_folder ".", "/home/vagrant/#{DIRNAME}", type: "virtualbox"
-
 
             #enable X11 forwarding for chrome powered debugging
             machine.ssh.forward_agent = true
@@ -162,20 +158,3 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         end
     end
 end
-
-# Inspiration from https://github.com/foobar-org/uber-react-native-firebase/blob/master/Vagrantfile
-
-# DELETE:
-# Vagrant.configure("2") do |config|
-
-#   config.vm.box = "ubuntu/trusty64"
-#   # config.vm.box_check_update = false
-
-#   config.vm.network "forwarded_port", guest: 80, host: 8080
-#   # config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
-#   # config.vm.network "private_network", ip: "192.168.33.10"
-#   # config.vm.network "public_network"
-
-#   # config.vm.synced_folder "../data", "/vagrant_data"
-
-# end
