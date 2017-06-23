@@ -5,7 +5,7 @@ cat > ~/.welcome-msg <<'EOF'
 -----------
 Quick start
 -----------
-
+    -- WIP -- CHANGE HERE --->
     $ cd ~/*native*
     $ react-native start & #react-native packager
     $ react-native run-android #or run-ios
@@ -15,6 +15,8 @@ in such cases restart the adb server and upload it manually:
 
     $ adb kill-server && adb start-server
     $ adb install "$(find ~/*native* -name "app-debug.apk")"
+
+    -- WIP --: CHANGE HERE <---
 EOF
 
 grep 'cat ~/.welcome-msg' ~/.bashrc >/dev/null 2>&1 || \
